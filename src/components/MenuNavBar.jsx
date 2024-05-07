@@ -67,11 +67,10 @@ const MenuNav = () => {
                   {nav_links.map((item, index) => (
                     <Menu>
                       {
-                        <Link
-                          className=" hover:text-2xl cursor-pointer  px-3 py-5 rounded-lg"
-                          to={item.path}
-                        >
-                          {item.display}
+                        <Link to={item.path}>
+                          <div className="hover:cursor-pointer   px-3  rounded-lg">
+                            {item.display}
+                          </div>
                         </Link>
                       }
                     </Menu>
