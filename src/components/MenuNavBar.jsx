@@ -32,7 +32,7 @@ const nav_links = [
 const MenuNav = () => {
   return (
     <div>
-      <nav className="w-screen flex justify-around py-4 bg-[#FFFFF] sticky top-0">
+      <nav className="w-screen flex justify-around  h-12 py-4 sticky top-0">
         <div className="items-center hidden space-x-5 md:flex">
           {/* <!-- Hamburger button for mobile view --> */}
           <button
@@ -68,7 +68,7 @@ const MenuNav = () => {
                     <Menu>
                       {
                         <Link
-                          className=" hover:text-2xl  px-3 py-5 rounded-lg"
+                          className=" hover:text-2xl cursor-pointer  px-3 py-5 rounded-lg"
                           to={item.path}
                         >
                           {item.display}
