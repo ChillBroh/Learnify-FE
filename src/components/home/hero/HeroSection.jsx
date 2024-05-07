@@ -1,30 +1,37 @@
 import React from "react";
 import "./HeroSection.css";
+import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <>
       <section className="hero">
-        <div className="container">
-          <div className="row">
-            <h1>Weclome To Learnify</h1>
-            <p>Best Online Education Expertise</p>
-            <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia, there live the blind texts.
+        <div className="flex px-12   lg:px-48">
+          <div className=" mb-48 mt-36 ">
+            <p className="whitespace-nowrap text-md lg:text-xl mb-5 text-left">
+              100% Quality Courses
             </p>
-            <div className="button">
-              <button className="primary-btn">
-                GET STARTED NOW <i className="fa fa-long-arrow-alt-right"></i>
+            <p className="whitespace-nowrap text-lg  lg:text-5xl mb-5 font-extrabold">
+              Find Your Perfect Courses
+            </p>
+            <p className=" text-md lg:text-xl">
+              We Have 40K+ Online Courses and 10K+ Instructors
+            </p>
+
+            <Link to={"/courses"}>
+              <button className="bg-[#411EE2] p-6 mt-12 text-white">
+                <div className="flex flex-row">
+                  <div>Explore All Courses</div>
+                  <div className="ml-5 mt-1">
+                    <FaArrowRight />
+                  </div>
+                </div>
               </button>
-              <button>
-                VIEW COURSE <i className="fa fa-long-arrow-alt-right"></i>
-              </button>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
-      <div className="margin"></div>
     </>
   );
 };
