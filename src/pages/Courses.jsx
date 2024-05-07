@@ -1,7 +1,13 @@
 import React from "react";
+import MenuNav from "../components/MenuNavBar";
 
 const Courses = () => {
-  return <div>Courses</div>;
+  return (
+    <div>
+      <MenuNav />
+      Courses
+    </div>
+  );
 };
 
 export default Courses;

@@ -5,6 +5,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
+import Blog from "../pages/Blog";
+import Courses from "../pages/Courses";
+import Modules from "../pages/Modules";
 
 const Router = () => {
   const ProtectedRoute = ({ children }) => {
@@ -22,6 +25,9 @@ const Router = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/courses" element={<Courses />} />
+      <Route path="/modules" element={<Modules />} />
     </Routes>
   );
 };
