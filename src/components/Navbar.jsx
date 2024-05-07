@@ -79,7 +79,11 @@ const Navbar = () => {
     <nav className="flex flex-row w-full  py-4 sticky bg-white top-0 z-[999]">
       <div className="flex items-center">
         <Link to="/">
-          <img src={logo} alt="Logo" className="h-16 w-auto rounded-full" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-10 lg:h-16 w-auto rounded-full"
+          />
         </Link>
       </div>
       {/* <!-- left header section --> */}
