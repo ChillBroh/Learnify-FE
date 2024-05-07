@@ -76,7 +76,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex flex-row w-full  py-4 sticky bg-white top-0 z-[999]">
+    <nav className="flex flex-row w-full px-16 justify-between py-4 sticky bg-white top-0 z-[999]">
       <div className="flex items-center">
         <Link to="/">
           <img
@@ -86,108 +86,111 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      {/* <!-- left header section --> */}
-      <div className="items-center text-xl hidden space-x-5 md:flex w-96 gap-8">
-        {/* <Select defaultValue="Zhejiang" options={options} /> */}{" "}
-        {/* Adjust width here */}
-        <Search
-          placeholder="Find Your Course"
-          enterButton="Search"
-          size="large"
-          allowClear
-          style={{ width: 1000 }}
-          className="mx-8"
-          loading={buttonLoading}
-          onSearch={searchHandler}
-        />
-      </div>
-      {/* <!-- right header section --> */}
-      <div className="items-center space-x-3 hidden md:flex">
-        {user ? (
-          <>
-            <div className="text-xl">Hello {user.userName} !</div>
-            <button className=""></button>
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                  {/* {user.name} */}
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={user.image}
-                    alt=""
-                  ></img>
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto origin-top-right rounded-md bg-black shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    <h2 className="block px-4 py-2 text-sm text-[#41A4FF]">
-                      {user.userName}
-                    </h2>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <Link
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-[#41A4FF]"
-                              : "text-[#41A4FF]",
-                            "block px-4 py-2 text-sm"
-                          )}
-                          to="/user"
-                        >
-                          Profile
-                        </Link>
-                      )}
-                    </Menu.Item>
-
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          type="button"
-                          onClick={handleLogout}
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-[#41A4FF]"
-                              : "text-[#41A4FF]",
-                            "block w-full px-4 py-2 text-left text-sm"
-                          )}
-                        >
-                          Sign out
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-          </>
-        ) : (
-          <div className="items-center space-x-3 hidden md:flex">
+      <div className="flex flex-row ">
+        {" "}
+        {/* <!-- left header section --> */}
+        <div className="items-center text-xl hidden space-x-5 md:flex w-96 gap-8">
+          {/* <Select defaultValue="Zhejiang" options={options} /> */}{" "}
+          {/* Adjust width here */}
+          <Search
+            placeholder="Find Your Course"
+            enterButton="Search"
+            size="large"
+            allowClear
+            style={{ width: 1000 }}
+            className="mx-8"
+            loading={buttonLoading}
+            onSearch={searchHandler}
+          />
+        </div>
+        {/* <!-- right header section --> */}
+        <div className="items-center space-x-3 hidden md:flex">
+          {user ? (
             <>
-              <Link
-                to="/login"
-                className="px-4 py-2 text-black font-bold bg-white border border-black text-center hover:px-6 hover:py-3 cursor-pointer rounded-3xl"
-              >
-                Sign in
-              </Link>
-              <Link
-                to="/register"
-                className="px-4 py-2 text-white font-bold bg-gray-800 text-center hover:px-6 hover:py-3  cursor-pointer rounded-3xl"
-              >
-                Sign up
-              </Link>
+              <div className="text-xl">Hello {user.userName} !</div>
+              <button className=""></button>
+              <Menu as="div" className="relative inline-block text-left">
+                <div>
+                  <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    {/* {user.name} */}
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={user.image}
+                      alt=""
+                    ></img>
+                  </Menu.Button>
+                </div>
+
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto origin-top-right rounded-md bg-black shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
+                    <div className="py-1">
+                      <h2 className="block px-4 py-2 text-sm text-[#41A4FF]">
+                        {user.userName}
+                      </h2>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-[#41A4FF]"
+                                : "text-[#41A4FF]",
+                              "block px-4 py-2 text-sm"
+                            )}
+                            to="/user"
+                          >
+                            Profile
+                          </Link>
+                        )}
+                      </Menu.Item>
+
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            type="button"
+                            onClick={handleLogout}
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-[#41A4FF]"
+                                : "text-[#41A4FF]",
+                              "block w-full px-4 py-2 text-left text-sm"
+                            )}
+                          >
+                            Sign out
+                          </button>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
             </>
-          </div>
-        )}
+          ) : (
+            <div className="items-center space-x-3 hidden md:flex">
+              <>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-black font-bold bg-white border border-black text-center hover:px-6 hover:py-3 cursor-pointer rounded-3xl"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  to="/register"
+                  className="px-4 py-2 text-white font-bold bg-gray-800 text-center hover:px-6 hover:py-3  cursor-pointer rounded-3xl"
+                >
+                  Sign up
+                </Link>
+              </>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* <div onClick={handleNav} className="block md:hidden">
