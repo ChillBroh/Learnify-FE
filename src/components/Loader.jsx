@@ -1,5 +1,5 @@
 import React from "react";
-import { RocketOutlined } from "@ant-design/icons";
+import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 
 const Loader = () => {
@@ -20,11 +20,10 @@ const Loader = () => {
     <div className="text-center mb-[500px]" style={overlayStyles}>
       <Spin
         indicator={
-          <RocketOutlined
+          <LoadingOutlined
             style={{
               fontSize: 36,
             }}
-            spin
           />
         }
       />
