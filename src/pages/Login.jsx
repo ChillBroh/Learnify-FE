@@ -31,7 +31,15 @@ const Login = () => {
       };
       setLoading(false);
       localStorage.setItem("jsonwebtoken", JSON.stringify(payload));
-      navigate("/");
+      const role = decoded.userRole;
+      if (role === "admin") {
+        navigate("/admin/home");
+      } else if (role === "instructor") {
+        navigate("/instructor/home");
+      } else {
+        navigate("/");
+      }
+      window.location.reload();
     } catch (err) {
       setLoading(false);
       Swal.fire({
