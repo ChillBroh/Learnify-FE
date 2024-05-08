@@ -25,21 +25,21 @@ const Navbar = () => {
   const userToken = localStorage.getItem("jsonwebtoken");
   const userDetails = JSON.parse(userToken);
   const user = userDetails ? userDetails.decodedJWT : "";
-  const originalToken = userDetails ? userDetails.originalToken : "";
+  const accessToken = userDetails ? userDetails.accessToken : "";
   const [nav, setNav] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      // const res = await axios.get(
-      //   "https://user-management-api-chillbroh.onrender.com/api/v1/auth/logout",
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${originalToken}`,
-      //     },
-      //   }
-      // );
-      // console.log(res);
+      const res = await axios.post(
+        "http://localhost:4000/api/auth/server/logout",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(res);
 
       localStorage.removeItem("jsonwebtoken");
       localStorage.removeItem("role");

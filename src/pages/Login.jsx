@@ -16,18 +16,19 @@ const Login = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.post("localhost:4000/api/auth/server/login", {
-        userName: values.userName,
-        password: values.password,
-      });
-
-      const decoded = jwtDecode(res.data.token);
-      const originalToken = res.data.token;
+      const res = await axios.post(
+        "http://localhost:4000/api/auth/server/login",
+        {
+          userName: values.userName,
+          password: values.password,
+        }
+      );
+      const decoded = jwtDecode(res.data.accessToken);
       const payload = {
         decodedJWT: decoded,
-        originalToken: originalToken,
+        accessToken: res.data.accessToken,
+        refreshToken: res.data.refreshToken,
       };
-      console.log(payload);
       setLoading(false);
       localStorage.setItem("jsonwebtoken", JSON.stringify(payload));
       navigate("/");
@@ -36,8 +37,9 @@ const Login = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: err.response.data.message,
+        text: err.response.data.body || "Something went wrong!",
       });
+      console.log(err);
     }
   };
 
@@ -56,9 +58,6 @@ const Login = () => {
               <span className="text-[46px] text-[#411EE2] font-extrabold ">
                 SIGN IN
               </span>
-              <h2 className="pt-2 pb-10 font-semibold text-white">
-                Explore The World With Us
-              </h2>
 
               <Form name="basic" onFinish={onFinish} autoComplete="off">
                 <div className="mt-4">

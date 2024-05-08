@@ -33,7 +33,7 @@ const Register = () => {
       }
 
       const result = await Swal.fire({
-        title: "Do you want to Register With NASA?",
+        title: "Do you want to Register With Learnify?",
         showDenyButton: true,
         confirmButtonText: "Yes",
         denyButtonText: "No",
@@ -44,18 +44,19 @@ const Register = () => {
           uploadImg = response;
         }
         const res = await axios.post(
-          "https://user-management-api-chillbroh.onrender.com/api/v1/user/register",
+          "http://localhost:4000/api/auth/server/register",
           {
             userName: values.name,
             email: values.email,
             image: uploadImg,
             password: values.password,
             mobileNo: values.contactNumber,
+            userRole: "learner",
           }
         );
         console.log("response", res);
         Swal.fire(
-          "Congratulations! You Have Successfully Registered with NASA",
+          "Congratulations! You Have Successfully Registered with Laarnify",
           "",
           "success"
         );
@@ -72,7 +73,10 @@ const Register = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: err.response.data.message,
+        text:
+          err.response.data.code === 11000
+            ? "User Already Exists!"
+            : "Something went wrong!",
       });
     }
   };
@@ -96,9 +100,7 @@ const Register = () => {
                   <span className="text-[46px] text-[#411EE2] font-extrabold ">
                     SIGN UP
                   </span>
-                  <h2 className="pt-8 font-semibold text-white">
-                    Explore The World With Us
-                  </h2>
+
                   <div className="mt-6 flex sm:flex-row justify-center">
                     <label htmlFor="fileInput">
                       <img
