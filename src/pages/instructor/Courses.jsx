@@ -3,22 +3,23 @@ import { Space, Table, Tag, Button } from "antd";
 import axios from "../../util/AxiosInstance";
 import DetailsDrawer from "../../components/DetailsDrawer";
 import Loader from "../../components/Loader";
+import Swal from "sweetalert2";
 
 const Courses = () => {
   const [data, setData] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [loading, isloading] = useState(false);
+  const [loading, isLoading] = useState(false);
 
   useEffect(() => {
     const getCourses = async () => {
-      isloading(true);
+      isLoading(true);
       try {
         const res = await axios.get("course/course/user");
         setData(res.data.data);
-        isloading(false);
+        isLoading(false);
       } catch (error) {
-        isloading(false);
+        isLoading(false);
         console.error("Error fetching courses:", error);
       }
     };
@@ -35,6 +36,12 @@ const Courses = () => {
   };
 
   const columns = [
+    {
+      title: "",
+      dataIndex: "",
+      key: "no",
+      render: (_, __, index) => <p>{index + 1}</p>,
+    },
     {
       title: "Title",
       dataIndex: "title",
@@ -85,11 +92,30 @@ const Courses = () => {
       render: (_, record) => (
         <Space size="middle">
           <Button block>Update</Button>
-          <Button danger>Delete</Button>
+          <Button danger onClick={() => handleDelete(record)}>
+            Delete
+          </Button>
         </Space>
       ),
     },
   ];
+
+  const handleDelete = async (record) => {
+    isLoading(true);
+    try {
+      await axios.delete(`http://localhost:4000/api/course/${record._id}`);
+      setData(data.filter((course) => course._id !== record._id));
+      Swal.fire(
+        "Course Deleted",
+        `${record.title} Course has been deleted`,
+        "success"
+      );
+    } catch (error) {
+      console.error("Error deleting course:", error);
+      Swal.fire("Error", "Error deleting course", "error");
+    }
+    isLoading(false);
+  };
 
   return (
     <>
