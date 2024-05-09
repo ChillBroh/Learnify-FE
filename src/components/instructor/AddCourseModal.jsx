@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Modal, Checkbox, Divider } from "antd";
 import { Form, Input } from "antd";
 const { TextArea } = Input;
@@ -173,7 +174,76 @@ const AddCourseModal = ({ open, close }) => {
               onChange={onChange}
               className="pb-3"
             />
+            {/* Dynamic fields */}
             <div className="pb-3 font-bold text-lg"> Lessons</div>
+            <Form.List name="lessons">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map((field, index) => (
+                    <div key={field.key} className="flex w-full flex-col">
+                      <MinusCircleOutlined
+                        onClick={() => remove(field.name)}
+                        className="justify-end cursor-pointer text-lg pb-5 pr-5"
+                      />
+                      <Form.Item
+                        {...field}
+                        name={[field.name, "title"]}
+                        fieldKey={[field.fieldKey, "lesson"]}
+                        rules={[
+                          { required: true, message: "Add Title for Lesson" },
+                        ]}
+                        className="w-full"
+                      >
+                        <Input placeholder="Lesson Title" />
+                      </Form.Item>
+                      <Form.Item
+                        {...field}
+                        name={[field.name, "description"]}
+                        fieldKey={[field.fieldKey, "lesson"]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Add Description for Lesson",
+                          },
+                        ]}
+                      >
+                        <TextArea
+                          placeholder="Description of the lesson"
+                          autoSize={{
+                            minRows: 2,
+                            maxRows: 6,
+                          }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        {...field}
+                        name={[field.name, "video"]}
+                        fieldKey={[field.fieldKey, "lesson"]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Add Video URL for Lesson",
+                          },
+                        ]}
+                        className="w-full"
+                      >
+                        <Input placeholder="Lesson Video URL" />
+                      </Form.Item>
+                    </div>
+                  ))}
+                  <Form.Item>
+                    <Button
+                      type="dashed"
+                      onClick={() => add()}
+                      icon={<PlusOutlined />}
+                    >
+                      Add Lesson
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
+
             <div className="flex felx-row justify-end gap-3">
               <Form.Item>
                 <Button onClick={handleCancel}>Cancel</Button>
