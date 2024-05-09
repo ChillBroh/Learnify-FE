@@ -4,12 +4,14 @@ import axios from "../../util/AxiosInstance";
 import DetailsDrawer from "../../components/DetailsDrawer";
 import Loader from "../../components/Loader";
 import Swal from "sweetalert2";
+import AddCourseModal from "../../components/instructor/AddCourseModal";
 
 const Courses = () => {
   const [data, setData] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [loading, isLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const getCourses = async () => {
@@ -33,6 +35,14 @@ const Courses = () => {
 
   const handleCloseDrawer = () => {
     setDrawerVisible(false);
+  };
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   const columns = [
@@ -101,22 +111,35 @@ const Courses = () => {
   ];
 
   const handleDelete = async (record) => {
-    isLoading(true);
-    try {
-      await axios.delete(`http://localhost:4000/api/course/${record._id}`);
-      setData(data.filter((course) => course._id !== record._id));
-      Swal.fire(
-        "Course Deleted",
-        `${record.title} Course has been deleted`,
-        "success"
-      );
-    } catch (error) {
-      console.error("Error deleting course:", error);
-      Swal.fire("Error", "Error deleting course", "error");
-    }
-    isLoading(false);
-  };
+    const confirmation = await Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to delete ${record.title}. This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+    });
 
+    if (confirmation.isConfirmed) {
+      isLoading(true);
+      try {
+        await axios.delete(`http://localhost:4000/api/course/${record._id}`);
+        setData(data.filter((course) => course._id !== record._id));
+        isLoading(false);
+        Swal.fire(
+          "Course Deleted",
+          `${record.title} Course has been deleted`,
+          "success"
+        );
+      } catch (error) {
+        isLoading(false);
+        console.error("Error deleting course:", error);
+        Swal.fire("Error", "Error deleting course", "error");
+      }
+    }
+  };
   return (
     <>
       {loading ? (
@@ -128,7 +151,9 @@ const Courses = () => {
           </div>
           <div>
             <div className="flex justify-center lg:justify-end">
-              <Button type="primary">Add Courses</Button>
+              <Button type="primary" onClick={handleModalOpen}>
+                Add Courses
+              </Button>
             </div>
           </div>
           <div className="pt-10 pb-10">
@@ -139,6 +164,9 @@ const Courses = () => {
             close={handleCloseDrawer}
             selectedCourse={selectedCourse}
           />
+          {modalOpen && (
+            <AddCourseModal open={modalOpen} close={handleCloseModal} />
+          )}
         </div>
       )}
     </>
