@@ -4,6 +4,7 @@ import { Button, Modal, Checkbox, Divider } from "antd";
 import { Form, Input, Radio } from "antd";
 import axios from "../../util/AxiosInstance";
 import uploadFileToFirebase from "../../util/UploadFilesToFIreBase";
+import Swal from "sweetalert2";
 const { TextArea } = Input;
 
 const plainOptions = [
@@ -28,14 +29,14 @@ const AddCourseModal = ({ open, close }) => {
   };
 
   const onFinish = async (values) => {
-    let uploadImg = "No Image";
-    setConfirmLoading(true);
-    if (file) {
-      const response = await uploadFileToFirebase(file);
-      uploadImg = response;
-    }
     try {
-      const response = await axios.post("http://localhost:4000/api/course/", {
+      let uploadImg = "No Image";
+      setConfirmLoading(true);
+      if (file) {
+        const response = await uploadFileToFirebase(file);
+        uploadImg = response;
+      }
+      const response = await axios.post("course/", {
         title: values.title,
         description: values.description,
         instructor: values.instructor,
@@ -58,14 +59,30 @@ const AddCourseModal = ({ open, close }) => {
         })),
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         console.log("Course added successfully!");
+        await Swal.fire({
+          icon: "success",
+          title: "Course added successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         close();
       } else {
         console.error("Failed to add course:", response.statusText);
+        await Swal.fire({
+          icon: "error",
+          title: "Failed to add course",
+          text: response.statusText,
+        });
       }
     } catch (error) {
       console.error("Error adding course:", error);
+      await Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.response.data.message,
+      });
     } finally {
       setConfirmLoading(false);
     }

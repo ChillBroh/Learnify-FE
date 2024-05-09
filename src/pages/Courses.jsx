@@ -10,9 +10,7 @@ const Courses = () => {
     const getAllCourses = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          "http://localhost:4000/api/guest/course/guest-routes"
-        );
+        const res = await axios.get("guest/course/guest-routes");
         setData(res.data);
         console.log(data);
         setLoading(false);
@@ -29,7 +27,7 @@ const Courses = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="lg:px-48 px-12">
+        <div className="lg:px-48 pb-24 px-12">
           <div className="text-center text-3xl font-bold text-[#411EE2] pt-10">
             All Courses In Our WebSite
           </div>

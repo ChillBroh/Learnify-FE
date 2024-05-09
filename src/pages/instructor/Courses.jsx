@@ -26,7 +26,7 @@ const Courses = () => {
       }
     };
     getCourses();
-  }, []);
+  }, [modalOpen]);
 
   const handleDrawer = (record) => {
     setSelectedCourse(record);
