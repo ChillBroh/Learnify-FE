@@ -53,6 +53,32 @@ const Courses = () => {
       render: (_, __, index) => <p>{index + 1}</p>,
     },
     {
+      title: "",
+      dataIndex: "coverImage",
+      key: "coverImage",
+      render: (img, record) => (
+        <p>
+          <label>
+            <img
+              className=""
+              src={
+                img === "No Image"
+                  ? "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : img
+              }
+              alt="avatar"
+              style={{
+                width: "120px",
+                height: "120px",
+                cursor: "pointer",
+              }}
+              onClick={() => handleDrawer(record)}
+            />
+          </label>
+        </p>
+      ),
+    },
+    {
       title: "Title",
       dataIndex: "title",
       key: "title",

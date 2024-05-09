@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Modal, Checkbox, Divider } from "antd";
-import { Form, Input } from "antd";
+import { Form, Input, Radio } from "antd";
+import axios from "../../util/AxiosInstance";
+import uploadFileToFirebase from "../../util/UploadFilesToFIreBase";
 const { TextArea } = Input;
 
 const plainOptions = [
@@ -25,14 +27,48 @@ const AddCourseModal = ({ open, close }) => {
     close();
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    console.log("checked list", checkedList);
+  const onFinish = async (values) => {
+    let uploadImg = "No Image";
     setConfirmLoading(true);
-    setTimeout(() => {
-      close();
+    if (file) {
+      const response = await uploadFileToFirebase(file);
+      uploadImg = response;
+    }
+    try {
+      const response = await axios.post("http://localhost:4000/api/course/", {
+        title: values.title,
+        description: values.description,
+        instructor: values.instructor,
+        duration: values.duration,
+        coverImage: uploadImg,
+        price: values.price,
+        tags: checkedList,
+        lessons: values.lessons.map((lesson, lessonIndex) => ({
+          title: lesson.title,
+          description: lesson.description,
+          videoUrl: lesson.video,
+          quiz: lesson.quiz.map((question, questionIndex) => ({
+            question: question.question,
+            option1: question.option1,
+            option2: question.option2,
+            option3: question.option3,
+            option4: question.option4,
+            correctAnswer: question.correctAnswer,
+          })),
+        })),
+      });
+
+      if (response.ok) {
+        console.log("Course added successfully!");
+        close();
+      } else {
+        console.error("Failed to add course:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error adding course:", error);
+    } finally {
       setConfirmLoading(false);
-    }, 2000);
+    }
   };
   const onChange = (list) => {
     setCheckedList(list);
@@ -50,6 +86,7 @@ const AddCourseModal = ({ open, close }) => {
         confirmLoading={confirmLoading}
         width={1000}
         footer={null}
+        onCancel={handleCancel}
       >
         <div>
           <Form form={form} name="form" onFinish={onFinish} autoComplete="off">
@@ -260,6 +297,81 @@ const AddCourseModal = ({ open, close }) => {
                                   ]}
                                 >
                                   <Input placeholder="Question" />
+                                </Form.Item>
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "option1"]}
+                                  fieldKey={[quizField.fieldKey, "question"]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please input Option 1!",
+                                    },
+                                  ]}
+                                >
+                                  <Input placeholder="Option 1" />
+                                </Form.Item>
+
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "option2"]}
+                                  fieldKey={[quizField.fieldKey, "question"]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please input Option 2!",
+                                    },
+                                  ]}
+                                >
+                                  <Input placeholder="Option 2" />
+                                </Form.Item>
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "option3"]}
+                                  fieldKey={[quizField.fieldKey, "question"]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please input Option 3!",
+                                    },
+                                  ]}
+                                >
+                                  <Input placeholder="Option 3" />
+                                </Form.Item>
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "option4"]}
+                                  fieldKey={[quizField.fieldKey, "question"]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please input Option 4!",
+                                    },
+                                  ]}
+                                >
+                                  <Input placeholder="Option 4" />
+                                </Form.Item>
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "correctAnswer"]}
+                                  fieldKey={[
+                                    quizField.fieldKey,
+                                    "correctAnswer",
+                                  ]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message:
+                                        "Please select the correct answer!",
+                                    },
+                                  ]}
+                                >
+                                  <Radio.Group>
+                                    <Radio value="option1">Option 1</Radio>
+                                    <Radio value="option2">Option 2</Radio>
+                                    <Radio value="option3">Option 3</Radio>
+                                    <Radio value="option4">Option 4</Radio>
+                                  </Radio.Group>
                                 </Form.Item>
                               </div>
                             ))}
