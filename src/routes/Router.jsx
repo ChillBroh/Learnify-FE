@@ -13,6 +13,7 @@ import AdminHome from "../pages/admin/Home";
 import Swal from "sweetalert2";
 import InstructorCourses from "../pages/instructor/Courses";
 import InstructorEnrollment from "../pages/instructor/Enrollments";
+import CourseDetails from "../pages/CourseDetails";
 
 const Router = () => {
   const ProtectedRoute = ({ children }) => {
@@ -67,6 +68,7 @@ const Router = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/courses" element={<Courses />} />
       <Route path="/modules" element={<Modules />} />
+      <Route path="/course/:id" element={<CourseDetails />} />
 
       <Route
         path="/instructor/home"
