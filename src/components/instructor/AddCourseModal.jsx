@@ -174,67 +174,113 @@ const AddCourseModal = ({ open, close }) => {
               onChange={onChange}
               className="pb-3"
             />
-            {/* Dynamic fields */}
+            {/* Dynamic fields lesson */}
             <div className="pb-3 font-bold text-lg"> Lessons</div>
             <Form.List name="lessons">
-              {(fields, { add, remove }) => (
+              {(fields, { add: addLesson, remove: removeLesson }) => (
                 <>
-                  {fields.map((field, index) => (
-                    <div key={field.key} className="flex w-full flex-col">
-                      <MinusCircleOutlined
-                        onClick={() => remove(field.name)}
-                        className="justify-end cursor-pointer text-lg pb-5 pr-5"
-                      />
+                  {fields.map((lessonField, lessonIndex) => (
+                    <div key={lessonField.key}>
+                      <div className="flex justify-between items-center pb-3">
+                        <h3>Lesson {lessonIndex + 1}</h3>
+                        {fields.length > 1 && (
+                          <MinusCircleOutlined
+                            onClick={() => removeLesson(lessonField.name)}
+                          />
+                        )}
+                      </div>
                       <Form.Item
-                        {...field}
-                        name={[field.name, "title"]}
-                        fieldKey={[field.fieldKey, "lesson"]}
+                        {...lessonField}
+                        name={[lessonField.name, "title"]}
+                        fieldKey={[lessonField.fieldKey, "title"]}
                         rules={[
-                          { required: true, message: "Add Title for Lesson" },
+                          {
+                            required: true,
+                            message: "Please input title for the lesson!",
+                          },
                         ]}
-                        className="w-full"
                       >
                         <Input placeholder="Lesson Title" />
                       </Form.Item>
                       <Form.Item
-                        {...field}
-                        name={[field.name, "description"]}
-                        fieldKey={[field.fieldKey, "lesson"]}
+                        {...lessonField}
+                        name={[lessonField.name, "description"]}
+                        fieldKey={[lessonField.fieldKey, "description"]}
                         rules={[
                           {
                             required: true,
-                            message: "Add Description for Lesson",
+                            message: "Please input description for the lesson!",
                           },
                         ]}
                       >
                         <TextArea
                           placeholder="Description of the lesson"
-                          autoSize={{
-                            minRows: 2,
-                            maxRows: 6,
-                          }}
+                          autoSize={{ minRows: 2, maxRows: 6 }}
                         />
                       </Form.Item>
                       <Form.Item
-                        {...field}
-                        name={[field.name, "video"]}
-                        fieldKey={[field.fieldKey, "lesson"]}
+                        {...lessonField}
+                        name={[lessonField.name, "video"]}
+                        fieldKey={[lessonField.fieldKey, "video"]}
                         rules={[
                           {
                             required: true,
-                            message: "Add Video URL for Lesson",
+                            message: "Please input video URL for the lesson!",
                           },
                         ]}
-                        className="w-full"
                       >
                         <Input placeholder="Lesson Video URL" />
                       </Form.Item>
+                      {/* Dynamic fields for quizzes */}
+                      <div className="pb-3 font-bold text-lg">
+                        Questions and Answers
+                      </div>
+                      <Form.List name={[lessonField.name, "quiz"]}>
+                        {(quizFields, { add: addQuiz, remove: removeQuiz }) => (
+                          <>
+                            {quizFields.map((quizField, quizIndex) => (
+                              <div key={quizField.key}>
+                                <div className="flex justify-between items-center pb-3">
+                                  <h4>Question {quizIndex + 1}</h4>
+                                  {quizFields.length > 1 && (
+                                    <MinusCircleOutlined
+                                      onClick={() => removeQuiz(quizField.name)}
+                                    />
+                                  )}
+                                </div>
+                                <Form.Item
+                                  {...quizField}
+                                  name={[quizField.name, "question"]}
+                                  fieldKey={[quizField.fieldKey, "question"]}
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please input question!",
+                                    },
+                                  ]}
+                                >
+                                  <Input placeholder="Question" />
+                                </Form.Item>
+                              </div>
+                            ))}
+                            <Form.Item>
+                              <Button
+                                type="dashed"
+                                onClick={() => addQuiz()}
+                                icon={<PlusOutlined />}
+                              >
+                                Add Question
+                              </Button>
+                            </Form.Item>
+                          </>
+                        )}
+                      </Form.List>
                     </div>
                   ))}
                   <Form.Item>
                     <Button
                       type="dashed"
-                      onClick={() => add()}
+                      onClick={() => addLesson()}
                       icon={<PlusOutlined />}
                     >
                       Add Lesson
