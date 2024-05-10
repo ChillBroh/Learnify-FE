@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from "../../util/AxiosInstance";
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function PendingCoursesPanel() {
 
@@ -39,6 +41,7 @@ export default function PendingCoursesPanel() {
           getAllPendingCourses()
           return prevPendingCourses
         })
+        toast("Course approved successfully!")
       }else{
         console.log("GetAllPendingCourses NotRunning!")
       }
@@ -76,6 +79,7 @@ export default function PendingCoursesPanel() {
 
   return (
     <div className=' w-full h-full  '>
+       <ToastContainer autoClose={3000} />
       <div className='flex flex-col items-center  px-5'>
         <span className=' text-2xl font-bold my-5'> Pending Courses</span>
         <div className='p-2 w-[calc(30vw)] h-[68vh] bg-white rounded-2xl'>
@@ -84,7 +88,7 @@ export default function PendingCoursesPanel() {
               <div className=' font-FuturaMdBd font-semibold mx-2'>{item.title}</div>
               
               <div className=' flex font-FuturaMdBt text-md text-white items-center'>
-                <span className='p-1 bg-green-400 cursor-pointer rounded-xl shadow ' onClick={() => onApprove(item._id)}>approve</span>
+                <span className='p-1 bg-green-400 cursor-pointer rounded-xl shadow hover:scale-105 ' onClick={() => onApprove(item._id)}>approve</span>
                 <span className='p-1 m-2 cursor-pointer text-black' onClick={() =>onCancel(item._id)}>&times; </span>
               </div>
             </div>
