@@ -58,11 +58,46 @@ const Router = () => {
     }
     return children;
   };
+  const LoggedOutRoute = ({ children }) => {
+    const token = localStorage.getItem("jsonwebtoken");
+    const isAuthenticated = token ? true : false;
+    let role;
+    if (token) {
+      const payload = JSON.parse(token);
+      console.log(payload);
+      role = payload.decodedJWT.userRole;
+    }
+
+    if (isAuthenticated) {
+      if (role === "admin") {
+        return <Navigate to="/admin/home" />;
+      } else if (role === "instructor") {
+        return <Navigate to="/instructor/home" />;
+      } else {
+        return <Navigate to="/" />;
+      }
+    }
+    return children;
+  };
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={
+          <LoggedOutRoute>
+            <Login />
+          </LoggedOutRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <LoggedOutRoute>
+            <Register />
+          </LoggedOutRoute>
+        }
+      />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/blog" element={<Blog />} />
