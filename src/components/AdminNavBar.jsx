@@ -28,6 +28,7 @@ const AdminNavBar = () => {
   const accessToken = userDetails ? userDetails.accessToken : "";
   const [nav, setNav] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
+  
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
