@@ -34,7 +34,7 @@ export default function UserDetailsPanel() {
 
   return (
     <div className=' flex flex-col mt-16 p-5 h-[68vh] justify-between bg-white rounded-lg'>
-      <div className='flex flex-col'>
+      <div className='flex flex-col text-[#575757]'>
         <div className='flex justify-center items-center flex-col p-5 font-FuturaMdBt'>
           <img src={userData.image} className='w-28 h-28 rounded-full my-5' />
           <span className=' text-3xl font-bold'>{userData.userName}</span>
@@ -51,7 +51,7 @@ export default function UserDetailsPanel() {
         </div>
       </div>
       <div className='flex place-self-end items-end'>
-        <span className=' px-5 py-2 bg-blue-500 rounded-2xl text-white font-semibold hover:scale-105 cursor-pointer' onClick={() => setUpdateModel(true)}>update</span>
+        <span className=' px-5 py-2 border-blue-500 border-2 rounded-2xl text-[#575757] font-semibold hover:scale-105 cursor-pointer hover:text-white hover:bg-blue-500 hover:border-0' onClick={() => setUpdateModel(true)}>update</span>
       </div>
       <UserUpdateModel open ={updateModel} onClose={() =>toggleUpdateModel()} user={userData} />
 
