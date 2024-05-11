@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import login from "../assets/login.jpg";
-import axios from "axios";
+import axios from "../util/AxiosInstance";
 import Loader from "../components/Loader";
 import { Form, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -16,13 +16,10 @@ const Login = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/auth/server/login",
-        {
-          userName: values.userName,
-          password: values.password,
-        }
-      );
+      const res = await axios.post("auth/login", {
+        userName: values.userName,
+        password: values.password,
+      });
       const decoded = jwtDecode(res.data.accessToken);
       const payload = {
         decodedJWT: decoded,

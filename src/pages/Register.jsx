@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import login from "../assets/login.jpg";
-import axios from "axios";
+import axios from "../util/AxiosInstance";
 import Loader from "../components/Loader";
 import { Form, Input } from "antd";
 import uploadFileToFirebase from "../util/UploadFilesToFIreBase";
@@ -43,17 +43,14 @@ const Register = () => {
           const response = await uploadFileToFirebase(file);
           uploadImg = response;
         }
-        const res = await axios.post(
-          "http://localhost:4000/api/auth/server/register",
-          {
-            userName: values.name,
-            email: values.email,
-            image: uploadImg,
-            password: values.password,
-            mobileNo: values.contactNumber,
-            userRole: "learner",
-          }
-        );
+        const res = await axios.post("auth/register", {
+          userName: values.name,
+          email: values.email,
+          image: uploadImg,
+          password: values.password,
+          mobileNo: values.contactNumber,
+          userRole: "learner",
+        });
         console.log("response", res);
         Swal.fire(
           "Congratulations! You Have Successfully Registered with Laarnify",
