@@ -151,7 +151,7 @@ const Courses = () => {
     if (confirmation.isConfirmed) {
       isLoading(true);
       try {
-        await axios.delete(`http://localhost:4000/api/course/${record._id}`);
+        await axios.delete(`course/${record._id}`);
         setData(data.filter((course) => course._id !== record._id));
         isLoading(false);
         Swal.fire(

@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Swal from "sweetalert2";
 import logo from "../assets/logo.png";
-import axios from "axios";
+import axios from "../util/AxiosInstance";
 import { Input, Select } from "antd";
 const { Search } = Input;
 
@@ -32,7 +32,7 @@ const InstructorNavBar = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/auth/server/logout",
+        "auth/logout",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

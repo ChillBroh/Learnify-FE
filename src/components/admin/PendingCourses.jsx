@@ -43,6 +43,7 @@ export default function PendingCoursesPanel() {
           getAllPendingCourses()
           return prevPendingCourses
         })
+       
         toast("Course approved successfully!")
       } else {
         console.log("GetAllPendingCourses NotRunning!")
@@ -69,6 +70,7 @@ export default function PendingCoursesPanel() {
           getAllPendingCourses()
           return prevPendingCourses
         })
+   
       } else {
         console.log("GetAllPendingCourses NotRunning!")
       }
