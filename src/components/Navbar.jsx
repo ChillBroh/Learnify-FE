@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { Input, Select } from "antd";
+import axios from "../util/AxiosInstance";
 const { Search } = Input;
 
 const options = [
@@ -31,14 +32,11 @@ const Navbar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/auth/server/logout",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const res = await axios.post("auth/server/logout", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(res);
 
       localStorage.removeItem("jsonwebtoken");
