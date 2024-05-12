@@ -11,6 +11,7 @@ const Home = () => {
       <HeroSection />
       <AwardsSection />
       <CoursesCategory />
+  
     </div>
   );
 };

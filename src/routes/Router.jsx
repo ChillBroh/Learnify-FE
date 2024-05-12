@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import InstructorCourses from "../pages/instructor/Courses";
 import InstructorEnrollment from "../pages/instructor/Enrollments";
 import CourseDetails from "../pages/CourseDetails";
+import UserProfile from "../pages/UserProfile"
 
 const Router = () => {
   const ProtectedRoute = ({ children }) => {
@@ -104,6 +105,7 @@ const Router = () => {
       <Route path="/courses" element={<Courses />} />
       <Route path="/modules" element={<Modules />} />
       <Route path="/course/:id" element={<CourseDetails />} />
+      <Route path="/user" element={<UserProfile/>}/>
 
       <Route
         path="/instructor/home"
