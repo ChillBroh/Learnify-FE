@@ -33,7 +33,7 @@ export default function UserDetailsPanel() {
   }
 
   return (
-    <div className=' flex flex-col mt-16 p-5 h-[68vh] justify-between bg-white rounded-lg'>
+    <div className=' flex flex-col mt-16 p-5 h-[68vh] justify-between bg-white rounded-lg shadow'>
       <div className='flex flex-col text-[#575757]'>
         <div className='flex justify-center items-center flex-col p-5 font-FuturaMdBt'>
           <img src={userData.image} className='w-28 h-28 rounded-full my-5' />

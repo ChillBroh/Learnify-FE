@@ -84,9 +84,9 @@ export default function PendingCoursesPanel() {
   return (
     <div className=' w-full h-full  '>
       <ToastContainer autoClose={3000} />
-      <div className='flex flex-col items-center  px-5'>
-        <span className=' text-2xl font-bold my-5 text-[#575757]'> Pending Courses</span>
-        <div className='p-2 w-[calc(30vw)] h-[68vh] bg-white rounded-2xl overflow-y-auto'>
+      <div className='flex flex-col items-center  '>
+        <span className=' text-3xl font-bold my-5 text-[#575757]'> Pending Courses</span>
+        <div className='p-2 w-[calc(30vw)] h-[68vh] bg-white rounded-2xl overflow-y-auto shadow'>
           {pendingCourses.map((item) => (
             <div className=' p-2 w-full h-fit flex flex-row justify-between items-center border-gray-500 border-2 rounded-lg mt-5 shadow-lg  hover:bg-gray-200' >
               <div className=' w-fit h-full  py-3 cursor-pointer' onClick={() => setOpen(true)}>
