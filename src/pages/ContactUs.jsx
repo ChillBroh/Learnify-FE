@@ -6,8 +6,8 @@ const ContactUs = () => {
   return (
     <div>
       <MenuNav />
-      <div className="bg-black h-96 flex flex-col justify-center items-center">
-        <h1 className="text-white text-4xl mb-8">Contact Us</h1>
+      <div className="bg-blue-500 h-fit py-24 flex flex-col justify-center  items-center">
+        <h1 className="text-white text-4xl">Contact Us</h1>
       </div>
       <div className="flex flex-col items-center mt-8">
         <Input className="mb-4 w-64" placeholder="Name" />
