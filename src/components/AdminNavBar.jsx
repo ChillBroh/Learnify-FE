@@ -112,9 +112,9 @@ const AdminNavBar = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto origin-top-right rounded-md bg-black shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="absolute right-0 z-10 p-1 mt-2 w-40 h-auto origin-top-right rounded-md bg-white border-2 border-blue-500 shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                      <h2 className="block px-4 py-2 text-sm text-[#41A4FF]">
+                      <h2 className="block px-4 py-2 text-sm text-[#41A4FF]  hover:bg-blue-500 hover:text-white hover:rounded">
                         {user.userName}
                       </h2>
                       <Menu.Item>
@@ -124,7 +124,7 @@ const AdminNavBar = () => {
                               active
                                 ? "bg-gray-100 text-[#41A4FF]"
                                 : "text-[#41A4FF]",
-                              "block px-4 py-2 text-sm"
+                              "block px-4 py-2 text-sm  hover:bg-blue-500 hover:text-white hover:rounded"
                             )}
                             to="/user"
                           >
@@ -142,7 +142,7 @@ const AdminNavBar = () => {
                               active
                                 ? "bg-gray-100 text-[#41A4FF]"
                                 : "text-[#41A4FF]",
-                              "block w-full px-4 py-2 text-left text-sm"
+                              "block w-full px-4 py-2 text-left text-sm  hover:bg-red-500 hover:text-white hover:rounded"
                             )}
                           >
                             Sign out

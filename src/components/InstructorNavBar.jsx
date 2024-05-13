@@ -86,8 +86,8 @@ const InstructorNavBar = () => {
 
       {/* <!-- left header section --> */}
       <div className="items-center text-xl hidden space-x-5 md:flex gap-8">
-        <Link to={"/instructor/courses"}>Courses</Link>
-        <Link to={"/instructor/enrollment"}>Enrollment Details</Link>
+        <Link to={"/instructor/courses"} className=" hover:underline">Courses</Link>
+        <Link to={"/instructor/enrollment"} className="hover:underline">Enrollment Details</Link>
       </div>
       {/* <!-- right header section --> */}
       <div className="items-center space-x-3 hidden md:flex">
@@ -116,9 +116,9 @@ const InstructorNavBar = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto origin-top-right rounded-md bg-black shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto origin-top-right p-1 rounded-md bg-white border-2 border-blue-500 shadow-lg ring-1 ring-[#333333] ring-opacity-5 focus:outline-none">
                   <div className="py-1">
-                    <h2 className="block px-4 py-2 text-sm text-[#41A4FF]">
+                    <h2 className="block px-4 py-2 text-sm text-[#41A4FF] hover:bg-blue-500 hover:text-white hover:rounded">
                       {user.userName}
                     </h2>
                     <Menu.Item>
@@ -128,7 +128,7 @@ const InstructorNavBar = () => {
                             active
                               ? "bg-gray-100 text-[#41A4FF]"
                               : "text-[#41A4FF]",
-                            "block px-4 py-2 text-sm"
+                            "block px-4 py-2 text-sm hover:bg-blue-500 hover:text-white hover:rounded"
                           )}
                           to="/user"
                         >
@@ -146,7 +146,7 @@ const InstructorNavBar = () => {
                             active
                               ? "bg-gray-100 text-[#41A4FF]"
                               : "text-[#41A4FF]",
-                            "block w-full px-4 py-2 text-left text-sm"
+                            "block w-full px-4 py-2 text-left text-sm hover:bg-red-500 hover:text-white hover:rounded"
                           )}
                         >
                           Sign out
