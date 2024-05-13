@@ -15,6 +15,7 @@ import InstructorCourses from "../pages/instructor/Courses";
 import InstructorEnrollment from "../pages/instructor/Enrollments";
 import CourseDetails from "../pages/CourseDetails";
 import UserProfile from "../pages/UserProfile"
+import CourseDetailed from "../pages/CourseDetailedPage"
 
 const Router = () => {
   const ProtectedRoute = ({ children }) => {
@@ -106,6 +107,7 @@ const Router = () => {
       <Route path="/modules" element={<Modules />} />
       <Route path="/course/:id" element={<CourseDetails />} />
       <Route path="/user" element={<UserProfile/>}/>
+      <Route path="/course/detailed/:id" element = {<CourseDetailed/>} />
 
       <Route
         path="/instructor/home"
