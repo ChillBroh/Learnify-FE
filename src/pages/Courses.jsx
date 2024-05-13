@@ -37,51 +37,56 @@ const Courses = () => {
             {data.map((item) => (
               <div
                 key={item._id}
-                className="group relative  shadow-2xl rounded-b-xl border-2 "
+                className="group relative flex flex-col justify-between  shadow-2xl rounded-b-xl border-2 "
               >
-                <div className="min-h-80 aspect-h-1  aspect-w-1 w-full py-3 px-2 overflow-hidden   lg:aspect-none group-hover:opacity-40 lg:h-80">
-                  <img
-                    src={item.coverImage}
-                    alt="cover"
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
-                </div>
-                <div className="flex justify-between p-3">
-                  <h3 className="text-2xl  text-[#295cb1] ">
-                    <Link to={`/course/${item._id}`}>
-                      <span
-                        aria-hidden="true"
-                        className="absolute  inset-0 rounded-t-3xl "
-                      />
-                      {item.title}
-                    </Link>
-                    <p className="text-lg font-medium text-gray-900">
-                      This is Dummy Descripion . You Can See the Full course
-                      details by clicking on title
-                    </p>
-                  </h3>
-                </div>
-                <div className="px-2 pb-3">
-                  {item.tags.map((tag) => {
-                    let color = tag.length > 5 ? "geekblue" : "green";
-                    if (tag === "loser") {
-                      color = "volcano";
-                    }
-                    return (
-                      <Tag color={color} key={tag}>
-                        {tag.toUpperCase()}
-                      </Tag>
-                    );
-                  })}
-                </div>
-                <div className="flex flex-row mr-2 space-x-3 justify-between">
-                  <p className="text-lg text-left p-2 ">
-                    Price : {item.price} $
-                  </p>
+                <div>
+                  <div className="min-h-80 aspect-h-1  aspect-w-1 w-full py-3 px-2 overflow-hidden   lg:aspect-none group-hover:opacity-40 lg:h-80">
+                    <img
+                      src={item.coverImage}
+                      alt="cover"
+                      className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                    />
+                  </div>
+                  <div className="flex justify-between p-3">
+                    <h3 className="text-2xl  text-[#295cb1] ">
+                      <Link to={`/course/${item._id}`}>
+                        <span
+                          aria-hidden="true"
+                          className="absolute  inset-0 rounded-t-3xl "
+                        />
+                        {item.title}
+                      </Link>
+                      <p className="text-lg font-medium text-gray-900">
+                        This is Dummy Descripion . You Can See the Full course
+                        details by clicking on title
+                      </p>
+                    </h3>
+                  </div>
 
-                  <Link to={`/course/${item._id}`}>
-                    <Button type="primary">Enroll</Button>
-                  </Link>
+                </div>
+                <div>
+                  <div className="px-2 pb-3">
+                    {item.tags.map((tag) => {
+                      let color = tag.length > 5 ? "geekblue" : "green";
+                      if (tag === "loser") {
+                        color = "volcano";
+                      }
+                      return (
+                        <Tag color={color} key={tag}>
+                          {tag.toUpperCase()}
+                        </Tag>
+                      );
+                    })}
+                  </div>
+                  <div className="flex flex-row mr-2 space-x-3 justify-between">
+                    <p className="text-lg text-left p-2 ">
+                      Price : {item.price} $
+                    </p>
+
+                    <Link to={`/course/${item._id}`}>
+                      <Button type="primary">Enroll</Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

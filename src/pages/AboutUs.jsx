@@ -5,8 +5,8 @@ const AboutUs = () => {
   return (
     <div>
       <MenuNav />
-      <div className="bg-black h-96 flex flex-col justify-center items-center">
-        <h1 className="text-white text-4xl mb-8">About Us</h1>
+      <div className="bg-blue-500 h-fit py-24 flex flex-col justify-center  items-center">
+        <h1 className="text-white text-4xl">About Us</h1>
       </div>
       <div className="bg-white  py-8 px-4">
         <div className="max-w-4xl mx-auto">
