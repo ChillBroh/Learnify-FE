@@ -83,7 +83,7 @@ const Enrollments = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="lg:px-48 pb-5 px-12">
+        <div className="min-h-screen lg:px-48 pb-5 px-12">
           <div className="text-center lg:text-3xl text-md md:text-xl  font-bold pt-5">
             Enrollment Details
           </div>

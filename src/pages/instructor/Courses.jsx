@@ -171,7 +171,7 @@ const Courses = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="lg:px-48 pb-5 px-12">
+        <div className="lg:px-48 min-h-screen pb-5 px-12">
           <div className="text-center lg:text-3xl text-md md:text-xl  font-bold pt-5">
             Your Course Details
           </div>

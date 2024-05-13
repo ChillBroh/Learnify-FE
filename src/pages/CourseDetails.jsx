@@ -67,7 +67,7 @@ const CourseDetails = () => {
         const courseEnrollment = enrollment.data.data.filter((item) => {
           return item.courseId === data?._id;
         });
-        console.log(courseEnrollment);
+        console.log(course);
         if (courseEnrollment.paymentStatus === "true") {
           console.log("coursee eka");
           navigate(`/course/detailed/${data?._id}`);
@@ -104,11 +104,14 @@ const CourseDetails = () => {
   return (
     <div>
       {loading ? (
-        <Loader />
+        <div>
+          <Loader />
+          <div className="min-h-screen lg:px-32 lg:py-12 px-12 py-12">1</div>
+        </div>
       ) : (
-        <div className="lg:px-32 lg:py-12 px-12 py-12">
+        <div className="min-h-screen lg:px-32 lg:py-12 px-12 py-12">
           <div className="grid grid-cols-1 w-full h-[500px] md:grid-cols-2 gap-8">
-            <div className="bg-white  shadow-md rounded-lg overflow-hidden">
+            <div className="bg-white  shadow-md rounded-lg ">
               <img
                 src={data?.coverImage}
                 alt="course-logo"

@@ -4,12 +4,12 @@ import MenuNav from "../components/MenuNavBar";
 
 const ContactUs = () => {
   return (
-    <div className=" bg-slate-100 h-[85vh]">
+    <div className=" bg-slate-100 w-full h-[70vh]">
       <MenuNav />
-      <div className="bg-blue-500 h-fit py-16 flex flex-col justify-center  items-center">
+      <div className="bg-blue-500 h-fit py-16 flex flex-col  items-center">
         <h1 className="text-white text-4xl">Contact Us</h1>
       </div>
-      <div className="flex   flex-col items-center mt-8">
+      <div className="flex w-full   flex-col items-center mt-8">
         <Input className="mb-4 w-64" placeholder="Name" />
         <Input className="mb-4 w-64" placeholder="Email" />
         <textarea
