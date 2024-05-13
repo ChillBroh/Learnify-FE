@@ -57,14 +57,14 @@ const Login = () => {
       style={{ backgroundImage: `url(${login})` }}
     >
       <div className="absolute inset-0 flex justify-center items-center">
-        <div className="border px-12 mx-12 mt-36 py-12  bg-opacity-20 bg-black border-black rounded-lg">
+        <div className="border px-6 mx-12 mt-36 py-6 bg-white  bg-opacity-20 backdrop-blur border-blue-500 rounded-lg">
           <div className="px-12 pt-10 lg:px-24">
             <div className="pb-12 text-center ">
-              <span className="text-[46px] text-[#411EE2] font-extrabold ">
+              <span className="text-5xl text-[#411EE2] font-FutuBt font-extrabold ">
                 SIGN IN
               </span>
 
-              <Form name="basic" onFinish={onFinish} autoComplete="off">
+              <Form name="basic" onFinish={onFinish} autoComplete="off" className=" mt-10">
                 <div className="mt-4">
                   <Form.Item
                     name="userName"
@@ -106,15 +106,15 @@ const Login = () => {
                   <Form.Item>
                     <button
                       type="submit"
-                      className="bg-[#411EE2] text-white font-bold px-6 py-3 rounded-md hover:bg-[#333333]"
+                      className="bg-[#411EE2] text-white font-bold px-10 py-3 rounded-3xl  hover:bg-[#333333]"
                     >
                       Login
                     </button>
                   </Form.Item>
                 </div>
                 <div>
-                  <Link to="/register" className="text-white hover:underline">
-                    Not a member ? Register
+                  <Link to="/register" className="text-[#575757] ">
+                    Not a member ?<span className=" text-blue-500 hover:border-b-2 hover:border-blue-500"> Register </span>
                   </Link>
                 </div>
               </Form>

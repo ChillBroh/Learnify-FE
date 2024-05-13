@@ -62,7 +62,7 @@ const CoursesCategory = () => {
       </div>
       <div className="mx-12 lg:mx-48 grid grid-cols-2 xl:grid-cols-4 gap:4 lg:gap-6">
         {categories.map((category) => (
-          <div className="mb-8 rounded-[20px] bg-white p-2 shadow-md  hover:shadow-lg hover:cursor-pointer hover:bg-[#411EE2] hover:text-white  flex flex-rows items-center gap-6 justify-start lg:justify-center">
+          <div className="mb-8 rounded-[20px] bg-white p-2 shadow-md  hover:shadow-lg hover:cursor-pointer hover:bg-blue-500 hover:text-white  flex flex-rows items-center gap-6 justify-start lg:justify-center">
             <div className="  text-black text-3xl  h-[70px] w-[70px] flex items-center justify-center  rounded-2xl">
               {category.icon}
             </div>

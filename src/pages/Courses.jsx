@@ -30,8 +30,8 @@ const Courses = () => {
         <Loader />
       ) : (
         <div className="lg:px-28 pb-24 px-12">
-          <div className="text-center text-3xl font-bold text-[#411EE2] pt-10">
-            All Courses In Our WebSite
+          <div className="text-center text-3xl font-bold text-blue-500 pt-10">
+            Let's Explore the Courses on Learnify
           </div>
           <div className="grid pt-10 lg:grid-cols-4 md:grid-cols-3 gap-3 grid-cols-1">
             {data.map((item) => (
@@ -56,7 +56,7 @@ const Courses = () => {
                         />
                         {item.title}
                       </Link>
-                      <p className="text-lg font-medium text-gray-900">
+                      <p className="mt-2 text-sm font-normal text-[#575757]">
                         This is Dummy Descripion . You Can See the Full course
                         details by clicking on title
                       </p>
@@ -79,8 +79,8 @@ const Courses = () => {
                     })}
                   </div>
                   <div className="flex flex-row mr-2 space-x-3 justify-between">
-                    <p className="text-lg text-left p-2 ">
-                      Price : {item.price} $
+                    <p className="text-lg text-[#575757] text-left p-2 ">
+                      Price : <span className=" text-blue-700 font-semibold"> {item.price}</span>$
                     </p>
 
                     <Link to={`/course/${item._id}`}>

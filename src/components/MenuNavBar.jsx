@@ -11,14 +11,7 @@ const nav_links = [
     path: "/courses",
     display: "Courses",
   },
-  {
-    path: "/modules",
-    display: "Modules",
-  },
-  {
-    path: "/blog",
-    display: "Blog",
-  },
+  
   {
     path: "/about-us",
     display: "About Us",

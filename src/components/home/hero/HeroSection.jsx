@@ -20,7 +20,7 @@ const HeroSection = () => {
             </p>
 
             <Link to={"/courses"}>
-              <button className="bg-[#411EE2] p-6 mt-12 text-white">
+              <button className="bg-blue-500 rounded-xl p-6 mt-12 text-white">
                 <div className="flex flex-row">
                   <div>Explore All Courses</div>
                   <div className="ml-5 mt-1">
