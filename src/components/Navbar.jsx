@@ -9,17 +9,6 @@ import { Input, Select } from "antd";
 import axios from "../util/AxiosInstance";
 const { Search } = Input;
 
-const options = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-  },
-];
-
 const Navbar = () => {
   const navigate = useNavigate();
   const userToken = localStorage.getItem("jsonwebtoken");
