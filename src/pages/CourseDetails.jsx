@@ -18,17 +18,31 @@ const CourseDetails = () => {
     };
     getCourse();
   }, [id]);
+
+  const handleCheckout = async () => {
+    try {
+      const res = await axios.post("payment/create-checkout-session", {
+        body: JSON.stringify({
+          items: [{ name: data?.title, price: data?.price, quantity: 1 }],
+        }),
+      });
+      console.log("res is", res);
+      // window.location = url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="lg:px-32 lg:py-12 px-12 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="grid grid-cols-1 w-full h-[500px] md:grid-cols-2 gap-8">
+        <div className="bg-white  shadow-md rounded-lg overflow-hidden">
           <img
             src={data?.coverImage}
             alt="course-logo"
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="bg-white shadow-md rounded-lg px-6 py-8">
+        <div className="bg-white shadow-md  rounded-lg px-6 py-8">
           <div className="text-3xl font-semibold mb-4">{data?.title}</div>
           <div className="text-xl mb-4">{data?.description}</div>
           <div className="text-lg flex flex-row mb-4 gap-3">
@@ -76,7 +90,7 @@ const CourseDetails = () => {
             </ul>
           </div>
           <div className="flex items-end">
-            <Button type="primary" className="w-full">
+            <Button type="primary" onClick={handleCheckout} className="w-full">
               Enroll Now
             </Button>
           </div>

@@ -79,7 +79,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-10 lg:h-16 w-auto rounded-full"
+            className="h-10 lg:h-10 w-auto rounded-full"
           />
         </Link>
       </div>
@@ -174,13 +174,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-black font-bold bg-white border border-black text-center hover:px-6 hover:py-3 cursor-pointer rounded-3xl"
+                  className="px-4 py-2 text-black font-bold bg-white border border-black text-center  cursor-pointer rounded-3xl"
                 >
                   Sign in
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4 py-2 text-white font-bold bg-gray-800 text-center hover:px-6 hover:py-3  cursor-pointer rounded-3xl"
+                  className="px-4 py-2 text-white font-bold bg-gray-800 text-center   cursor-pointer rounded-3xl"
                 >
                   Sign up
                 </Link>

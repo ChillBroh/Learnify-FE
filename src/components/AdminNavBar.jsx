@@ -28,18 +28,15 @@ const AdminNavBar = () => {
   const accessToken = userDetails ? userDetails.accessToken : "";
   const [nav, setNav] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
-  
+
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "auth/logout",
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const res = await axios.post("auth/logout", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(res);
 
       localStorage.removeItem("jsonwebtoken");
@@ -79,11 +76,11 @@ const AdminNavBar = () => {
   return (
     <nav className="flex flex-row w-full px-16 justify-between py-4 sticky bg-white top-0 z-[999]">
       <div className="flex items-center">
-        <Link to="/">
+        <Link to="/admin/home">
           <img
             src={logo}
             alt="Logo"
-            className="h-10 lg:h-16 w-auto rounded-full"
+            className="h-10 lg:h-10 w-auto rounded-full"
           />
         </Link>
       </div>
@@ -162,13 +159,13 @@ const AdminNavBar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-black font-bold bg-white border border-black text-center hover:px-6 hover:py-3 cursor-pointer rounded-3xl"
+                  className="px-4 py-2 text-black font-bold bg-white border border-black text-center  cursor-pointer rounded-3xl"
                 >
                   Sign in
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4 py-2 text-white font-bold bg-gray-800 text-center hover:px-6 hover:py-3  cursor-pointer rounded-3xl"
+                  className="px-4 py-2 text-white font-bold bg-gray-800 text-center   cursor-pointer rounded-3xl"
                 >
                   Sign up
                 </Link>
