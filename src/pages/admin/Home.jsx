@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
 
-    <div className=' bg-slate-100 w-screen h-[calc(100vh-154px)] flex flex-row justify-evenly'>
+    <div className=' bg-slate-100 w-screen h-[calc(100vh-100px)] flex flex-row justify-evenly'>
       <div className=" w-1/4 h-full bg-zinc-100">
         <UserDetailsPanel/>
       </div>
