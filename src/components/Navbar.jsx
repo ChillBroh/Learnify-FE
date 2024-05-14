@@ -21,6 +21,7 @@ const Navbar = () => {
     e.preventDefault();
     try {
       const res = await axios.post("auth/logout", {
+        // send tokens
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -50,6 +50,7 @@ const CourseDetails = () => {
   }, [id]);
 
   const handleCheckout = async () => {
+    // get token
     const token = localStorage.getItem("jsonwebtoken");
     const isToken = token ? true : false;
 
@@ -62,6 +63,7 @@ const CourseDetails = () => {
     setLoading(true);
 
     try {
+      // send request for payment service
       const res = await axios.post("payment/create-checkout-session", {
         name: data?.title,
         price: data?.price,
@@ -72,6 +74,7 @@ const CourseDetails = () => {
       });
       console.log("res is", res);
       setLoading(false);
+      // redirect to relevant url
       window.location = res.data.url;
     } catch (error) {
       console.log(error);
