@@ -20,10 +20,10 @@ const Home = () => {
           <AddUserPanel/>
         </div>
         <div className=" w-full h-[40%] flex flex-col items-center justify-evenly font-FuturaMdBt font-semibold text-xl text-[#575757]">
-          <div onClick={() =>{ setUserType('instructor'); setUserListOpen(true);}} className=" flex justify-center bg-white py-5 rounded-xl w-[80%] my-5 border-2 border-[#575757] hover:border-green-500 hover:bg-gray-200 ">
+          <div onClick={() =>{ setUserType('instructor'); setUserListOpen(true);}} className=" cursor-pointer flex justify-center bg-white py-5 rounded-xl w-[80%] my-5 border-2 border-[#575757] hover:border-blue-500 hover:bg-gray-200 ">
             <span >View Instructors</span>
           </div>
-          <div onClick={() => { setUserType('admin'); setUserListOpen(true); }} className=" flex justify-center bg-white py-5 rounded-xl w-[80%] my-5 border-2 border-[#575757] hover:border-green-500 hover:bg-gray-200 ">
+          <div onClick={() => { setUserType('admin'); setUserListOpen(true); }} className=" cursor-pointer flex justify-center bg-white py-5 rounded-xl w-[80%] my-5 border-2 border-[#575757] hover:border-blue-500 hover:bg-gray-200 ">
             <span >View Admins</span>
           </div>
         </div>

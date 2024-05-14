@@ -4,7 +4,7 @@ import MenuNav from "../components/MenuNavBar";
 
 const ContactUs = () => {
   return (
-    <div className=" bg-slate-100 min-h-screen w-full h-[70vh]">
+    <div className=" bg-slate-100 min-h-screen w-full h-fit">
       <MenuNav />
       <div className="bg-blue-500  h-fit py-16 flex flex-col  items-center">
         <h1 className="text-white text-4xl">Contact Us</h1>

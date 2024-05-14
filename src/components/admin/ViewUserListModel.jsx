@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../../util/AxiosInstance'
+import Loader from '../Loader'
 
 export default function ViewUserListModel({ open, onClose, userType }) {
 
     const [userList, setUserList] = useState([])
-  
+    const [loading, setLoading] = useState(true)
+
 
     useEffect(() => {
         console.log('User type is : ' + userType)
@@ -19,6 +21,7 @@ export default function ViewUserListModel({ open, onClose, userType }) {
             if (res.status === 200) {
                 setUserList(res.data)
                 console.log(res.data)
+                setLoading(false)
 
             }
 
@@ -30,6 +33,7 @@ export default function ViewUserListModel({ open, onClose, userType }) {
             if (res.status === 200) {
                 setUserList(res.data)
                 console.log(res.data)
+                setLoading(false)
             }
 
         }
@@ -47,12 +51,22 @@ export default function ViewUserListModel({ open, onClose, userType }) {
                         <span className={`${userType === 'instructor' ? 'block' : 'hidden'} text-2xl text-[#575757] font-semibold`}>Current Instructors List</span>
                         <span className={`${userType === 'admin' ? 'block' : 'hidden'} text-2xl text-[#575757] font-semibold`}>Current Administrators List</span>
                     </div>
-                    {userList.map((item) => (
-                        <div className='w-[90%] flex my-2 justify-between py-2 px-4 border-2 text-[#575757] border-[#575757] font-FuturaMdBt rounded-xl' key={item.id}>
-                            <span>{item.userName}</span>
-                            <span> Mobile no : {item.mobileNo ? item.mobileNo:'No mobile Number yet'}</span>
+                    {loading ? (
+                        <div className=' w-full h-full'>
+                            <Loader />
                         </div>
-                    ))}
+                    ) : (
+                        <div className=' overflow-auto w-full px-5'>
+
+                            {userList.map((item) => (
+
+                                <div className='w-[90%] flex my-2 justify-between py-2 px-4 border-2 text-[#575757] border-[#575757] font-FuturaMdBt rounded-xl' key={item.id}>
+                                    <span>{item.userName}</span>
+                                    <span> Mobile no : {item.mobileNo ? item.mobileNo : 'No mobile Number yet'}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
                 </div>
                 <div className=' text-4xl  cursor-pointer justify-center items-center flex text-[#575757]'>

@@ -17,15 +17,17 @@ export default function ViewCompletedCourses() {
             const userID = userData.decodedJWT.userId;
 
             const res = await axios.get(`learner/courses/completed/${userID}`);
-
+            
+            console.log("Recived res : " + res)
+           
             if (res.status === 200) {
                 setCompletedList(res.data);
                 await getEachCourse(res.data)
-                
-            } else {
-                setErrorMsg(res.data);
-            }
+
+            } 
         } catch (error) {
+          
+            setErrorMsg(error.response.data);
             console.error('Error fetching completed courses:', error);
         }
     };
@@ -52,23 +54,33 @@ export default function ViewCompletedCourses() {
             <div className=' border-b-2 border-[#575757]'>
                 <span className=' text-3xl font-semibold '>Completed Courses</span>
             </div>
-            <div className=' flex flex-wrap mt-5 overflow-auto'>
-                {coursesList.map((course, index) => (
+            {errorMsg ? (
+                <div className='flex justify-center items-center w-full h-full'>
+                    <span className=' font-FuturaMdBt text-lg text-[#aeaeae]'>{errorMsg}</span>
+                </div>
+            ) : (
 
-                    <div className='flex items-center group cursor-pointer'>
-                        <div className=' w-4 h-4 rounded-full m-2 border-2 border-[#575757] transition-colors duration-300 ease-in-out group-hover:bg-blue-500'></div>
-                        <div key={index} className='flex flex-col px-1 w-72 h-fit py-2 bg-white rounded-lg shadow border-2 border-[#575757] '>
+                <div className=' flex flex-wrap mt-5 overflow-auto w-full h-[500px] bg-red-300'>
 
-                            <div className=' flex items-center'>
-                                <img src={course.coverImage} className='w-5 h-5 rounded m-2' alt='Course Cover' />
-                                <span>{course.title}</span>
+                    {coursesList.map((course, index) => (
+
+
+                        <div className='flex items-center group cursor-pointer'>
+                            <div className=' w-4 h-4 rounded-full m-2 border-2 border-[#575757] transition-colors duration-300 ease-in-out group-hover:bg-blue-500'></div>
+                            <div key={index} className='flex flex-col px-1 w-72 h-fit py-2 bg-white rounded-lg shadow border-2 border-[#575757] '>
+
+                                <div className=' flex items-center'>
+                                    <img src={course.coverImage} className='w-5 h-5 rounded m-2' alt='Course Cover' />
+                                    <span>{course.title}</span>
+                                </div>
+
+
                             </div>
-                            
-                           
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
+
         </div>
     );
 }
