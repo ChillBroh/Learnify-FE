@@ -60,11 +60,8 @@ export default function CourseDetailedPage() {
       <div className={`flex flex-col h-fit items-center justify-between `}>
         {data && (
           <div className="flex flex-col  absolute h-fit ">
-            <div className=" w-screen h-[150vh] ">
-              <img
-                src={data.coverImage}
-                className="w-full h-full object-cover"
-              />
+            <div className=" w-screen h-[200vh] ">
+              <img src={data.coverImage} className="w-full h-full" />
             </div>
             <div className="bg-white absolute shadow bottom-0 w-screen rounded-t-3xl flex flex-col px-10 py-5 justify-between">
               <div className="flex flex-col justify-start">
