@@ -77,26 +77,28 @@ const CourseDetails = () => {
       console.log(error);
     }
   };
+
+
   return (
-    <div>
+    <div className=" h-fit min-h-screen">
       {loading ? (
         <div>
           <Loader />
           <div className="min-h-screen lg:px-32 lg:py-12 px-12 py-12">1</div>
         </div>
       ) : (
-        <div className="min-h-screen lg:px-32 lg:py-12 px-12 py-12">
-          <div className="grid grid-cols-1 w-full h-[500px] md:grid-cols-2 gap-8">
+        <div className="min-h-screen h-fit lg:px-32 lg:py-12 px-12 py-12 ">
+          <div className="grid grid-cols-1 w-full h-fit md:grid-cols-2 gap-8">
             <div className="bg-white  shadow-md rounded-lg ">
               <img
                 src={data?.coverImage}
                 alt="course-logo"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
               />
             </div>
             <div className="bg-white shadow-md  rounded-lg px-6 py-8">
               <div className="text-3xl font-semibold mb-4">{data?.title}</div>
-              <div className="text-xl mb-4">{data?.description}</div>
+              <div className="text-lg mb-4">{data?.description}</div>
               <div className="text-lg flex flex-row mb-4 gap-3">
                 <Flex gap="middle" vertical>
                   <Rate value={5} />
