@@ -5,7 +5,7 @@ import axios from "../util/AxiosInstance";
 import { FaRegUser } from "react-icons/fa6";
 import { message, Steps, theme } from "antd";
 import Loader from "../components/Loader";
-
+import { Link } from "react-router-dom";
 const CourseDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState();
@@ -14,6 +14,7 @@ const CourseDetails = () => {
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [enrolled, setEnrolled] = useState(true);
 
   const next = () => {
     setCurrent(current + 1);
@@ -40,9 +41,35 @@ const CourseDetails = () => {
   useEffect(() => {
     const getCourse = async () => {
       const res = await axios.get(`guest/course/guest-routes/${id}`);
-      console.log(res.data.course.lessons);
       setData(res.data.course);
-      setSteps(res.data.course.lessons);
+      getEnrolledCourses(res.data.course);
+    };
+    const getEnrolledCourses = async (courseData) => {
+      const token = localStorage.getItem("jsonwebtoken");
+      const userDetails = JSON.parse(token);
+      const userId = userDetails?.decodedJWT.userId;
+      console.log("user is", userId);
+      if (userId) {
+        const res = await axios.get(`course/enroll/${userId}`);
+        console.log("res is", res.data.data);
+        const courses = res.data.data;
+        if (courses.length > 0) {
+          console.log("data is", courseData);
+          const isEnrolled = courses.filter((course) => {
+            return course.courseId === courseData?._id;
+          });
+          console.log("is enrolled", isEnrolled);
+          if (isEnrolled.length > 0) {
+            setEnrolled(true);
+          } else {
+            setEnrolled(false);
+          }
+        } else {
+          setEnrolled(false);
+        }
+      } else {
+        setEnrolled(false);
+      }
     };
     getCourse();
   }, [id]);
@@ -60,43 +87,17 @@ const CourseDetails = () => {
     setLoading(true);
 
     try {
-      const enrollment = await axios.get(`/course/enroll/${userId}`);
-      const enrol = enrollment.data.data;
-      console.log(enrol.length);
-      if (enrol.length > 0) {
-        const courseEnrollment = enrollment.data.data.filter((item) => {
-          return item.courseId === data?._id;
-        });
-        console.log(course);
-        if (courseEnrollment.paymentStatus === "true") {
-          console.log("coursee eka");
-          navigate(`/course/detailed/${data?._id}`);
-        } else {
-          const res = await axios.post("payment/create-checkout-session", {
-            name: data?.title,
-            price: data?.price,
-            quantity: 1,
-            id: data?._id,
-            image: data?.coverImage,
-            userId: userId,
-          });
-          console.log("res is", res);
-          setLoading(false);
-          window.location = res.data.url;
-        }
-      } else {
-        const res = await axios.post("payment/create-checkout-session", {
-          name: data?.title,
-          price: data?.price,
-          quantity: 1,
-          id: data?._id,
-          image: data?.coverImage,
-          userId: userId,
-        });
-        console.log("res is", res);
-        setLoading(false);
-        window.location = res.data.url;
-      }
+      const res = await axios.post("payment/create-checkout-session", {
+        name: data?.title,
+        price: data?.price,
+        quantity: 1,
+        id: data?._id,
+        image: data?.coverImage,
+        userId: userId,
+      });
+      console.log("res is", res);
+      setLoading(false);
+      window.location = res.data.url;
     } catch (error) {
       console.log(error);
     }
@@ -165,15 +166,25 @@ const CourseDetails = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex items-end">
-                <Button
-                  type="primary"
-                  onClick={handleCheckout}
-                  className="w-full"
-                >
-                  Enroll Now
-                </Button>
-              </div>
+              {enrolled ? (
+                <div className="">
+                  <Link to={`/course/detailed/${data?._id}`}>
+                    <Button type="primary" className="w-full ">
+                      View Course
+                    </Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="flex items-end">
+                  <Button
+                    type="primary"
+                    onClick={handleCheckout}
+                    className="w-full"
+                  >
+                    Enroll Now
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
           {/* <div className="pt-10 pb-16">
