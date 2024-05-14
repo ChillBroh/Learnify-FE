@@ -50,6 +50,7 @@ const CourseDetails = () => {
   }, [id]);
 
   const handleCheckout = async () => {
+    // get token
     const token = localStorage.getItem("jsonwebtoken");
     const isToken = token ? true : false;
 
