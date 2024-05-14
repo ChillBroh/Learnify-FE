@@ -23,6 +23,8 @@ const Courses = () => {
     getAllCourses();
   }, []);
 
+
+
   return (
     <div>
       <MenuNav />
@@ -57,8 +59,7 @@ const Courses = () => {
                         {item.title}
                       </Link>
                       <p className="mt-2 text-sm font-normal text-[#575757]">
-                        This is Dummy Descripion . You Can See the Full course
-                        details by clicking on title
+                        {item.description.split('.')[0] + '.'}
                       </p>
                     </h3>
                   </div>
