@@ -73,7 +73,7 @@ const CourseDetails = () => {
       });
       console.log("res is", res);
       setLoading(false);
-      // redirect to relevant url
+      
       window.location = res.data.url;
     } catch (error) {
       console.log(error);
