@@ -62,6 +62,7 @@ const CourseDetails = () => {
     setLoading(true);
 
     try {
+      // send request for payment service
       const res = await axios.post("payment/create-checkout-session", {
         name: data?.title,
         price: data?.price,
