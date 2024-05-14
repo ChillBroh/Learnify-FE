@@ -16,6 +16,7 @@ import InstructorEnrollment from "../pages/instructor/Enrollments";
 import CourseDetails from "../pages/CourseDetails";
 import UserProfile from "../pages/UserProfile";
 import CourseDetailed from "../pages/CourseDetailedPage";
+import CourseProgressPage from "../pages/CourseProgressPage";
 
 const Router = () => {
   const ProtectedRoute = ({ children }) => {
@@ -112,6 +113,14 @@ const Router = () => {
         element={
           <ProtectedRoute>
             <CourseDetailed />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/course/progress/:id"
+        element={
+          <ProtectedRoute>
+            <CourseProgressPage />
           </ProtectedRoute>
         }
       />
