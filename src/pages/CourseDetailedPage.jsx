@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "../util/AxiosInstance";
 import { Link } from "react-router-dom";
 import { Button, message, Steps, theme } from "antd";
 import QuizModal from "../components/QuizModal";
+import axios from "../util/AxiosInstance";
 
 export default function CourseDetailedPage() {
   const { id } = useParams();
@@ -56,6 +56,11 @@ export default function CourseDetailedPage() {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const redirect = async(id) => {
+    const res =  await axios.delete(`course/enroll/${id}`)
+  }
+
   return (
     <>
       <div className={`flex flex-col h-fit items-center justify-between `}>
@@ -98,7 +103,10 @@ export default function CourseDetailedPage() {
                     ))}
                   </div>
                 </div>
-                <div>
+                <div className=" flex flex-col">
+                <Link to={`/courses`} >
+               <button className=" hover:bg-blue-500 border-2 mb-2 border-blue-500 text-blue-500 px-10 py-2 font-bold hover:text-white rounded-3xl text-lg" onClick={() => redirect(data._id)} >Unenroll</button>
+               </Link>
                   <button className=" hover:bg-blue-500 border-2 border-blue-500 text-blue-500 px-10 py-2 font-bold hover:text-white rounded-3xl text-lg" onClick={() => setNextOpen(true)}>Go to Course</button>
                 </div>
 
