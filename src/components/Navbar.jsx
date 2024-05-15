@@ -36,9 +36,10 @@ const Navbar = () => {
         text: "Successfully LoggedOut!!",
       });
       navigate("/login");
+
     } catch (error) {
       console.error("Logout failed:", error);
-      // Show error message
+      // Show error Message
       Swal.fire({
         icon: "error",
         title: "Logout Failed",
