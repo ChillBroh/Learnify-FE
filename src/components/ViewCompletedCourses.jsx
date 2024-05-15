@@ -60,7 +60,7 @@ export default function ViewCompletedCourses() {
                 </div>
             ) : (
 
-                <div className=' flex flex-wrap mt-5 overflow-auto w-full h-[500px] bg-red-300'>
+                <div className=' flex flex-wrap mt-5 overflow-auto w-full h-[500px] '>
 
                     {coursesList.map((course, index) => (
 
