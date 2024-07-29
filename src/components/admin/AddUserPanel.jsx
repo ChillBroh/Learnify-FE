@@ -84,7 +84,7 @@ export default function AddUserPanel() {
     return (
         <form className=' w-full h-full rounded-xl pt-5 bg-white flex flex-col justify-between shadow' onSubmit={handleAddUser}>
             <div className='flex flex-col items-center'>
-                <span className=' font-FutuBt font-bold  text-3xl text-[#575757]'>Add New User</span>
+                <span className=' font-FutuBt font-bold  text-3xl text-[#575757]'>Add New Instructor</span>
                 <div className=' w-full flex justify-between px-5 my-5'>
                     <input type='text' required placeholder='User Name' className=' py-2 w-[45%] border-b-2 pl-2 border-b-[#575757] rounded' onChange={handleUserName} />
                     <input type='email' required placeholder='Email' className=' py-2 w-[45%] border-b-2 pl-2 border-b-[#575757] rounded' onChange={handleEmail} />
